@@ -30,6 +30,8 @@ python giazero/agent.py \
     --user-prompt "Solve the challenge step by step."
 ```
 
+**Note:** For a full list of supported models, see the [LangChain Integrations documentation](https://docs.langchain.com/oss/python/integrations/providers/overview).
+
 ## Extending Tools
 Add custom tools in `giazero/tools.py` using the `@tool` decorator and append to the `tools` list:
 ```python
