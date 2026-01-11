@@ -1,4 +1,5 @@
 import argparse
+from copy import copy
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -9,6 +10,19 @@ from system_prompt import get_system_prompt
 from tools import tools
 
 load_dotenv(override=True)
+
+
+def pprint(msg):
+    """Pretty print message, trimming base64 image data."""
+    msg = copy(msg)
+    if isinstance(msg.content, list):
+        msg.content = [
+            {"mime_type": item["mime_type"], "data": "[trimmed]"}
+            if isinstance(item, dict) and "data" in item and "mime_type" in item
+            else item
+            for item in msg.content
+        ]
+    msg.pretty_print()
 
 
 if __name__ == "__main__":
@@ -62,4 +76,4 @@ if __name__ == "__main__":
         {"messages": [HumanMessage(content=args.user_prompt)]},
         stream_mode="values",
     ):
-        event["messages"][-1].pretty_print()
+        pprint(event["messages"][-1])
