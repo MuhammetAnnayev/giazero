@@ -3,6 +3,7 @@ import mimetypes
 import subprocess
 from pathlib import Path
 
+from gui_tools import gui_tools
 from langchain.tools import tool
 
 
@@ -290,4 +291,4 @@ tools = [
     write_file,
     execute_shell,
     execute_python,
-]
+] + gui_tools
