@@ -4,6 +4,7 @@ import subprocess
 from pathlib import Path
 
 from gui_tools import gui_tools
+from video_editing_tools import video_editing_tools
 from langchain.tools import tool
 
 
@@ -283,12 +284,16 @@ def execute_python(file_path: str) -> str:
         return f"Error executing Python file: {str(e)}"
 
 
-tools = [
-    list_directory,
-    read_text_file,
-    read_binary_file,
-    read_image_file,
-    write_file,
-    execute_shell,
-    execute_python,
-] + gui_tools
+tools = (
+    [
+        list_directory,
+        read_text_file,
+        read_binary_file,
+        read_image_file,
+        write_file,
+        execute_shell,
+        execute_python,
+    ]
+    + gui_tools
+    + video_editing_tools
+)
